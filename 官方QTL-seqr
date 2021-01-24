@@ -49,7 +49,7 @@ p4
 dev.off()
 
 ## SNP过滤
-df <- subset(df, !is.na(SNPindex.LOW) & !is.na(SNPindex.HIGH))
+
 df_filt <- filterSNPs(
     SNPset = df,
     refAlleleFreq = 0.20, ## ref allele频率过滤�?0.2表示0.2~0.8之间
