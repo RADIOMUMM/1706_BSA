@@ -6,24 +6,26 @@ library(grid)
 library(ComplexHeatmap)
 a<-read.delim("clipboard",header=T,row.names=1)
 x=as.matrix(a)
-#×ÔÉèÖÃÑÕÉ«
+X=log10(x+1)
+#è‡ªè®¾ç½®é¢œè‰²
 library(circlize)
 
-#×Ô¶¨ÒåÑÕÉ«
-mycol <- colorRamp2(c( 0.01, 0.05, 0.15,0.2), c("red","skyblue3","lightskyblue1","lightskyblue2"))
-#×Ô¶¨ÒåÍ¼Àý
+#è‡ªå®šä¹‰é¢œè‰²
+mycol <- colorRamp2(seq(0.01, 2, length=5), c("royalblue","lightsteelblue","khaki", "orange","red"), space = "RGB")
+#è‡ªå®šä¹‰å›¾ä¾‹
 heatmap_legend_param = list(
   title= "legend", title_position = "topcenter", 
   legend_height=unit(8,"cm"), legend_direction="vertical")
 
 
 
-Heatmap(x,cluster_rows = FALSE,cluster_columns = FALSE,col =mycol
-        , heatmap_width = unit(10, "cm"), heatmap_height = unit(17, "cm")
+Heatmap(X,cluster_rows = T,cluster_columns = T,col =mycol
+        , heatmap_width = unit(18, "cm"), heatmap_height = unit(10, "cm")
         ,heatmap_legend_param = list( title= "P_value", 
                                       title_position = "topcenter"
                                       , legend_height=unit(5,"cm")
                                       , legend_direction="vertical" ))
 
-#ÆäËû²ÎÊýÉèÖÃ²Î¿¼
+
+#å…¶ä»–å‚æ•°è®¾ç½®å‚è€ƒ
 #https://jokergoo.github.io/ComplexHeatmap-reference/book/more-examples.html#visualize-cell-heterogeneity-from-single-cell-rnaseq
